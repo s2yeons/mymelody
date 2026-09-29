@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Melody ♡ 마이멜로디</title>
+  <meta name="description" content="핑크 두건을 쓴 마리랜드 숲의 토끼, 마이멜로디를 소개하는 인터랙티브 팬 페이지" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 29%22%3E%3Cpath fill=%22%23ff5c9a%22 d=%22M16 28.5S1 19.6 1 9.3C1 4.6 4.6 1 9.1 1c2.9 0 5.4 1.5 6.9 3.8C17.5 2.5 20 1 22.9 1 27.4 1 31 4.6 31 9.3 31 19.6 16 28.5 16 28.5z%22/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Gaegu:wght@700&family=Jua&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <!-- loader -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <svg class="loader__heart" viewBox="0 0 32 29" aria-hidden="true"><path d="M16 28.5S1 19.6 1 9.3C1 4.6 4.6 1 9.1 1c2.9 0 5.4 1.5 6.9 3.8C17.5 2.5 20 1 22.9 1 27.4 1 31 4.6 31 9.3 31 19.6 16 28.5 16 28.5z"/></svg>
+      <div class="loader__num"><span id="loaderNum">0</span><small>%</small></div>
+      <p class="loader__text">마리랜드 숲으로 가는 중…</p>
+    </div>
+  </div>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor__ring"><span class="cursor__label">콕!</span></div>
+    <div class="cursor__dot"></div>
+  </div>
+  <div class="fx-layer" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__logo" href="#hero" data-magnetic>my melody<span>♡</span></a>
+    <nav class="nav__links">
+      <a href="#profile" data-magnetic>프로필</a>
+      <a href="#sayings" data-magnetic>엄마가 그랬어</a>
+      <a href="#friends" data-magnetic>친구들</a>
+      <a href="#play" data-magnetic>연주하기</a>
+    </nav>
+    <button class="nav__sound" id="soundBtn" type="button" data-magnetic aria-pressed="true">
+      <span class="nav__eq"><i></i><i></i><i></i></span><span class="nav__sound-label">SOUND ON</span>
+    </button>
+  </header>
+  <div class="progress"><div class="progress__bar"></div></div>
+  <div class="counter" aria-hidden="true">
+    <span class="counter__num">01</span><span class="counter__total">/ 08</span><span class="counter__label">HELLO</span>
+  </div>
+
+  <main>
+    <!-- 00 HERO -->
+    <section class="hero" id="hero" data-label="HELLO">
+      <p class="hero__eyebrow">SANRIO CHARACTER<br />SINCE 1975 · MARY LAND</p>
+      <p class="hero__sub">핑크 두건을 쓴<br />마리랜드 숲의 착한 토끼</p>
+      <h1 class="hero__title" data-split="hero">My Melody</h1>
+      <div class="hero__hint"><span class="hero__mouse"></span>스크롤하거나, 멜로디를 콕! 눌러보세요</div>
+    </section>
+
+    <!-- 01 INTRO -->
+    <section class="intro" id="intro" data-label="WHO AM I">
+      <div class="intro__col">
+        <p class="kicker">01 — 자기소개</p>
+        <h2 class="title" data-split>안녕, 나는<br />마이멜로디야!</h2>
+        <p class="lead" data-reveal>마리랜드 숲속에서 엄마, 아빠, 할머니, 할아버지, 그리고 남동생 리듬과 함께 살고 있어. 할머니가 만들어 주신 <mark>핑크 두건</mark>은 나의 보물 1호! 엄마랑 쿠키 굽는 시간이 제일 좋아.</p>
+        <ul class="chips" data-stagger>
+          <li>#솔직함</li><li>#다정함</li><li>#느긋함</li><li>#가끔은_엉뚱</li><li>#아몬드파운드케이크</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 PROFILE -->
+    <section class="profile" id="profile" data-label="PROFILE">
+      <div class="profile__col">
+        <p class="kicker">02 — 프로필</p>
+        <h2 class="title" data-split>멜로디의<br />작은 이력서</h2>
+        <div class="stats" data-stagger>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">생일</span>
+            <strong class="stat__value">1월 <b data-count="18">0</b>일</strong>
+            <span class="stat__note">한겨울에 태어난 봄 같은 아이</span>
+          </div></div>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">데뷔</span>
+            <strong class="stat__value"><b data-count="1975">0</b>년</strong>
+            <span class="stat__note">'빨간 두건' 이야기에서 태어났어요</span>
+          </div></div>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">고향</span>
+            <strong class="stat__value">마리랜드 숲</strong>
+            <span class="stat__note">꽃과 과자 냄새가 나는 곳</span>
+          </div></div>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">최애 간식</span>
+            <strong class="stat__value">아몬드 파운드케이크</strong>
+            <span class="stat__note">한 조각 더는 언제나 환영</span>
+          </div></div>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">특기</span>
+            <strong class="stat__value">엄마랑 쿠키 굽기</strong>
+            <span class="stat__note">가끔 모양이 엉뚱해도 맛은 최고</span>
+          </div></div>
+          <div class="stat"><div class="stat__card" data-tilt>
+            <span class="stat__label">함께한 시간</span>
+            <strong class="stat__value"><b data-count="50">0</b>년 +</strong>
+            <span class="stat__note">반세기 넘게 사랑받는 중</span>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 SAYINGS (pinned horizontal) -->
+    <section class="sayings" id="sayings" data-label="MAMA SAID">
+      <div class="sayings__track">
+        <div class="sayings__intro">
+          <p class="kicker">03 — 엄마가 그랬어</p>
+          <h2 class="title" data-split>엄마가<br />그랬어 ♡</h2>
+          <p class="lead">곤란할 때마다 멜로디는 엄마 말을 떠올려요. 멜로디 풍으로 지어 본 여섯 가지 다정한 한마디.</p>
+          <p class="sayings__more">계속 스크롤 <span>→</span></p>
+        </div>
+        <!-- cards injected -->
+      </div>
+    </section>
+
+    <!-- 04 FRIENDS -->
+    <section class="friends" id="friends" data-label="FRIENDS">
+      <div class="friends__head">
+        <p class="kicker">04 — 친구들 & 가족</p>
+        <h2 class="title" data-split>멜로디 곁의<br />소중한 얼굴들</h2>
+      </div>
+      <div class="friends__grid" data-stagger></div>
+    </section>
+
+    <!-- 05 TIMELINE -->
+    <section class="timeline" id="timeline" data-label="HISTORY">
+      <div class="timeline__col">
+        <p class="kicker">05 — 히스토리</p>
+        <h2 class="title" data-split>1975년부터<br />지금까지</h2>
+        <div class="timeline__body">
+          <svg class="timeline__svg" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+            <path class="timeline__ghost" d="M40 0 C 90 90, -10 160, 40 250 S 90 410, 40 500 S -10 660, 40 750 S 90 910, 40 1000" />
+            <path class="timeline__path" pathLength="1" d="M40 0 C 90 90, -10 160, 40 250 S 90 410, 40 500 S -10 660, 40 750 S 90 910, 40 1000" />
+          </svg>
+          <div class="timeline__runner" aria-hidden="true">
+            <svg viewBox="0 0 32 29"><path d="M16 28.5S1 19.6 1 9.3C1 4.6 4.6 1 9.1 1c2.9 0 5.4 1.5 6.9 3.8C17.5 2.5 20 1 22.9 1 27.4 1 31 4.6 31 9.3 31 19.6 16 28.5 16 28.5z"/></svg>
+          </div>
+          <ol class="timeline__list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 PLAY -->
+    <section class="play" id="play" data-label="PLAY">
+      <div class="play__head">
+        <p class="kicker">06 — 연주하기</p>
+        <h2 class="title" data-split>멜로디의 멜로디</h2>
+        <p class="lead">건반을 누르거나 키보드 <kbd>A</kbd>~<kbd>K</kbd>를 눌러 보세요. 빈 곳을 클릭하면 꽃이 피어나요.</p>
+        <div class="play__actions">
+          <button class="btn" type="button" data-action="jump" data-magnetic>점프!</button>
+          <button class="btn" type="button" data-action="wink" data-magnetic>윙크</button>
+          <button class="btn" type="button" data-action="ears" data-magnetic>귀 쫑긋</button>
+          <button class="btn" type="button" data-action="spin" data-magnetic>빙글빙글</button>
+          <button class="btn btn--accent" type="button" data-action="song" data-magnetic>▶ 반짝반짝 작은별</button>
+        </div>
+      </div>
+      <div class="keys" id="keys"></div>
+    </section>
+
+    <!-- 07 OUTRO -->
+    <footer class="outro" id="outro" data-label="BYE BYE">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__inner">
+          <span>MY MELODY ♡ 마이멜로디 ♡ MY MELODY ♡ 마이멜로디 ♡ </span>
+          <span>MY MELODY ♡ 마이멜로디 ♡ MY MELODY ♡ 마이멜로디 ♡ </span>
+        </div>
+      </div>
+      <div class="outro__center">
+        <h2 class="outro__title" data-split>오늘도 다정한<br />하루 보내 ♡</h2>
+        <button class="btn btn--light" id="toTop" type="button" data-magnetic>처음으로 ↑</button>
+      </div>
+      <small class="outro__legal">Unofficial fan page · My Melody © Sanrio</small>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
